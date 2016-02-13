@@ -3,9 +3,9 @@ bmcgeheecap1/example-tomcat-war:
   Env:
     # Set the below enviornment variables for your environment
     - CATALINA_HOME: "/usr/share/tomcat7"
-    #- JAVA_HOME: "/usr/lib/jvm/jre"
-    #- JAVA_HOME: "/usr/lib/jvm/java-7-oracle/jre"
-    # The port number below is only for reference. Set it to the port number of your tomcat server.
+    - JAVA_HOME: "/usr/lib/jvm/jre"
+    # The port number below is only for reference. Set it to the
+    #  port number of your tomcat server.
     - PORT: "8080"
     #- M2_HOME: "/usr/local/apache-maven-3.2.1"
     #- M2: "$M2_HOME/bin"
@@ -42,17 +42,17 @@ bmcgeheecap1/example-tomcat-war:
     #- sudo apt-get -y install oracle-java7-installer
     #- sudo apt-get -y install oracle-java7-set-default
     #- sudo apt-get -y install tomcat7
-    #- sudo yum -y install java
-    #- cd /usr/local
-    #- sudo curl -O http://mirror.olnevhost.net/pub/apache/maven/binaries/apache-maven-3.2.1-bin.tar.gz
-    #- sudo tar zxvf apache-maven-3.2.1-bin.tar.gz 
-    #- mvn -version
+    - sudo yum -y install java
+    - cd /usr/local
+    - sudo curl -O http://mirror.olnevhost.net/pub/apache/maven/binaries/apache-maven-3.2.1-bin.tar.gz
+    - sudo tar zxvf apache-maven-3.2.1-bin.tar.gz 
+    - mvn -version
 
   PostInstall:
-    #- mvn package
+    - mvn package
     - publicip=$(curl -s ident.me)
     - echo "Public IP $publicip"
-    #- 'sudo cp -f ./target/*.war $CATALINA_HOME/webapps/'
+    - 'sudo cp -f ./target/*.war $CATALINA_HOME/webapps/'
     # By default tomcat detects if the war file has changed and
     # automatically extracts it. If restart is required you can
     # restart tomcat with the command below.
