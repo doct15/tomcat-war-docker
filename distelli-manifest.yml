@@ -22,10 +22,16 @@ bmcgeheecap1/example-tomcat-war:
     #- sudo apt-get -y install maven
 
   Build:
-    #- mvn package
+    - mvn package
+    - ### Docker Build Commands ###
+    - docker login -u "$DISTELLI_DOCKER_USERNAME" -p "$DISTELLI_DOCKER_PW" -e "$DISTELLI_DOCKER_EMAIL" $DISTELLI_DOCKER_ENDPOINT
+    - docker build --quiet=false -t "$DISTELLI_DOCKER_REPO" $DISTELLI_DOCKER_PATH
+    - docker tag "$DISTELLI_DOCKER_REPO" "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
+    - docker push "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
+    - ### End Docker Build Commands ###
 
   PkgInclude:
-    - '*'
+    - './target/*.war'
  
   PreInstall:
     # The below preinstall steps will pre-install
