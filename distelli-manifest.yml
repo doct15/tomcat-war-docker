@@ -2,24 +2,9 @@ bmcgeheecap1/example-tomcat-war:
 
   Env:
     # Set the below enviornment variables for your environment
-    - CATALINA_HOME: "/usr/share/tomcat7"
-    #- JAVA_HOME: "/usr/lib/jvm/jre"
-    #- JAVA_HOME: "/usr/lib/jvm/java-7-oracle/jre"
+    - CATALINA_HOME: "/usr/local/tomcat"
     # The port number below is only for reference. Set it to the port number of your tomcat server.
     - PORT: "8080"
-    #- M2_HOME: "/usr/local/apache-maven-3.2.1"
-    #- M2: "$M2_HOME/bin"
-    #- PATH: "$M2:$PATH"
-
-  PreBuild:
-    #- sudo add-apt-repository -y ppa:webupd8team/java
-    #- sudo apt-get -y update
-    #- echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-    #- echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections    
-    #- sudo apt-get -y install oracle-java7-installer
-    #- sudo apt-get -y install oracle-java7-set-default
-    #- sudo apt-get -y install tomcat7
-    #- sudo apt-get -y install maven
 
   Build:
     - mvn package
@@ -34,36 +19,12 @@ bmcgeheecap1/example-tomcat-war:
     - './target/*.war'
  
   PreInstall:
-    # The below preinstall steps will pre-install
-    #  Java
-    #  Tomcat 7
-    # 
-    # These steps are built for Ubuntu 14
-    # Unremark them if you need to install tomcat
-    #
-    #- sudo add-apt-repository -y ppa:webupd8team/java
-    #- sudo apt-get -y update
-    #- echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-    #- echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections    
-    #- sudo apt-get -y install oracle-java7-installer
-    #- sudo apt-get -y install oracle-java7-set-default
-    #- sudo apt-get -y install tomcat7
-    #- sudo yum -y install java
-    #- cd /usr/local
-    #- sudo curl -O http://mirror.olnevhost.net/pub/apache/maven/binaries/apache-maven-3.2.1-bin.tar.gz
-    #- sudo tar zxvf apache-maven-3.2.1-bin.tar.gz 
-    #- mvn -version
+    - ### Docker Pre Install Commands ###
+    - sudo docker login -u "$DISTELLI_DOCKER_USERNAME" -p "$DISTELLI_DOCKER_PW" -e "$DISTELLI_DOCKER_EMAIL" $DISTELLI_DOCKER_ENDPOINT
+    - ### End Docker Pre Install Commands ###
 
   PostInstall:
-    #- mvn package
     - publicip=$(curl -s ident.me)
     - echo "Public IP $publicip"
-    #- 'sudo cp -f ./target/*.war $CATALINA_HOME/webapps/'
-    # By default tomcat detects if the war file has changed and
-    # automatically extracts it. If restart is required you can
-    # restart tomcat with the command below.
-    # Restart Tomcat - You might have to use a different command
-    # depending on how tomcat is installed
-    #- sudo service tomcat7 restart
     - 'echo "You can validate the install by pointing your browser at http://$publicip:$PORT/SimpleTomcatWebApp"'
     
