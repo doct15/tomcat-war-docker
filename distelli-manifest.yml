@@ -15,7 +15,7 @@ bmcgehee/tomcat-war-docker1:
   PkgInclude:
     - './target/*.war'
   PreInstall:
-    - echo "DD_USERNAME  $DISTELLI_DOCKER_USERNAME"
+    - echo "DD_USERNAME- $DISTELLI_DOCKER_USERNAME"
     - echo "DD_EMAIL-    $DISTELLI_DOCKER_EMAIL"
     - echo "DD_ENDPOINT- $DISTELLI_DOCKER_ENDPOINT"
     ### Docker Pre Install Commands ###
