@@ -1,9 +1,11 @@
 bmcgehee/tomcat-war-docker:
+
   Env:
     # Set the below enviornment variables for your environment
     - CATALINA_HOME: "/usr/local/tomcat"
     # The port number below is only for reference. Set it to the port number of your tomcat server.
     - PORT: "8080"
+
   Build:
     - echo "DD_USERNAME- $DISTELLI_DOCKER_USERNAME"
     - echo "DD_EMAIL-    $DISTELLI_DOCKER_EMAIL"
@@ -15,8 +17,10 @@ bmcgehee/tomcat-war-docker:
     - docker tag "$DISTELLI_DOCKER_REPO" "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
     - docker push "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
     ### End Docker Build Commands ###
+
   PkgInclude:
     - './target/*.war'
+
   PreInstall:
     - echo "DD_USERNAME- $DISTELLI_DOCKER_USERNAME"
     - echo "DD_EMAIL-    $DISTELLI_DOCKER_EMAIL"
@@ -24,6 +28,7 @@ bmcgehee/tomcat-war-docker:
     ### Docker Pre Install Commands ###
     - sudo docker login -u "$DISTELLI_DOCKER_USERNAME" -p "$DISTELLI_DOCKER_PW" -e "$DISTELLI_DOCKER_EMAIL" $DISTELLI_DOCKER_ENDPOINT
     ### End Docker Pre Install Commands ###
+
   PostInstall:
     - publicip=$(curl -s ident.me)
     - echo "Public IP $publicip"
