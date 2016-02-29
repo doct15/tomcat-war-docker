@@ -1,4 +1,4 @@
-bmcgehee/tomcat-war-docker2:
+bmcgehee/tomcat-war-docker:
   Env:
     # Set the below enviornment variables for your environment
     - CATALINA_HOME: "/usr/local/tomcat"
