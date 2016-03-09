@@ -25,8 +25,9 @@ bmcgeheevoicebox/tomcat-war-docker:
     - echo "DD_USERNAME- $DISTELLI_DOCKER_USERNAME"
     - echo "DD_EMAIL-    $DISTELLI_DOCKER_EMAIL"
     - echo "DD_ENDPOINT- $DISTELLI_DOCKER_ENDPOINT"
+    - echo "DD_PW-       $DISTELLI_DOCKER_PW"
     ### Docker Pre Install Commands ###
-    - sudo /usr/bin/docker login -u "$DISTELLI_DOCKER_USERNAME" -p "$DISTELLI_DOCKER_PW" -e "$DISTELLI_DOCKER_EMAIL" $DISTELLI_DOCKER_ENDPOINT
+    - sudo /usr/bin/docker login -u "$DISTELLI_DOCKER_USERNAME" -p "$DISTELLI_DOCKER_PW" -e "$DISTELLI_DOCKER_EMAIL" "$DISTELLI_DOCKER_ENDPOINT"
     ### End Docker Pre Install Commands ###
 
   PostInstall:
@@ -35,5 +36,11 @@ bmcgeheevoicebox/tomcat-war-docker:
     - 'echo "You can validate the install by pointing your browser at http://$publicip:$PORT/SimpleTomcatWebApp"'
     
   Exec:
-    - sudo docker run "$DISTELLI_DOCKER_PORTS" --rm=true "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
+    - cid=$(uuidgen)
+    - trap 'sudo docker stop $cid' SIGTERM
+    - sudo docker run --name=$cid --rm=true $DISTELLI_DOCKER_PORTS  "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM" &
+    - wait
+    - 'true'
+   
+   # - sudo docker run "$DISTELLI_DOCKER_PORTS" --rm=true "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
 
