@@ -1,4 +1,4 @@
-bmcgeheevoicebox/tomcat-war-docker:
+bmcgehee/tomcat-war-docker:
 
   Env:
     # Set the below enviornment variables for your environment
