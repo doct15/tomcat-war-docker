@@ -34,7 +34,9 @@ bmcgeheedd/tomcat-war-docker:
   PostInstall:
     - publicip=$(curl -s ident.me)
     #- echo "Public IP $publicip"
-    - 'echo "You can validate the install by pointing your browser at http://$publicip:$PORT/SimpleTomcatWebApp"'
+    - echo ""
+    - 'echo "You can validate the install by pointing your browser at http://$publicip/SimpleTomcatWebApp"'
+    - echo ""
       
   Exec:
     #- cid=$(uuidgen)
