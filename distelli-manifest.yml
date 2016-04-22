@@ -35,7 +35,7 @@ bmcgehee/tomcat-war-docker:
     - publicip=$(curl -s ident.me)
     - echo "Public IP $publicip"
     - 'echo "You can validate the install by pointing your browser at http://$publicip:$PORT/SimpleTomcatWebApp"'
-    
+      
   Exec:
     #- cid=$(uuidgen)
     #- trap 'sudo docker stop $cid' SIGTERM
