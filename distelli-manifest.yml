@@ -1,4 +1,4 @@
-bmcgehee/tomcat-war-docker:
+bmcgeheedd/tomcat-war-docker:
 
   Env:
     # Set the below enviornment variables for your environment
