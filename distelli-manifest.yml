@@ -4,7 +4,7 @@ bmcgeheedd/tomcat-war-docker:
     # Set the below enviornment variables for your environment
     - CATALINA_HOME: "/usr/local/tomcat"
     # The port number below is only for reference. Set it to the port number of your tomcat server.
-    - PORT: "8080"
+    - PORT: "8000"
 
   Build:
     - echo "DD_USERNAME- $DISTELLI_DOCKER_USERNAME"
