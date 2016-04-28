@@ -32,7 +32,7 @@ bmcgeheedd/tomcat-war-docker:
     ### End Docker Pre Install Commands ###
 
   PostInstall:
-    - publicip=$(curl -s ident.me)
+    - publicip=$(curl -s ident.me) 
     #- echo "Public IP $publicip"
     - echo ""
     - 'echo "You can validate the install by pointing your browser at http://$publicip/SimpleTomcatWebApp"'
