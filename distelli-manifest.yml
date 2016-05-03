@@ -45,4 +45,4 @@ bmcgeheedd/tomcat-war-docker:
     #- wait
     #- 'true'
      - sudo docker run --rm=true $DISTELLI_DOCKER_PORTS "$DISTELLI_DOCKER_REPO:$DISTELLI_BUILDNUM"
-
+     
