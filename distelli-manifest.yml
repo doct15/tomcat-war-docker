@@ -37,8 +37,7 @@ bmcgeheedd/tomcat-war-docker:
     - echo ""
     - 'echo "You can validate the install by pointing your browser at http://$publicip/SimpleTomcatWebApp"'
     - echo ""
-    - fail command
-      
+
   Exec:
     #- cid=$(uuidgen)
     #- trap 'sudo docker stop $cid' SIGTERM
